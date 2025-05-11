@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mock Test App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    select, button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .question {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .option {
+      margin: 5px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 5px;
+      background: white;
+    }
+    .correct {
+      background-color: #d4edda;
+      border-color: #28a745;
+    }
+    .wrong {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .explanation {
+      margin-top: 15px;
+      font-style: italic;
+    }
+    #score {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    #nextBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      display: none;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #nextBtn:hover {
+      background: #0056b3;
+    }
+  </style>
+  <script src="quiz_data.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <h2>Choose Quiz Type</h2>
+  <button onclick="document.getElementById('customQuizSetup').style.display = 'block'; document.getElementById('quizSection').style.display = 'none';">Customized Quiz (Select Subject & Topic)</button>
+  <button onclick="startRandomQuiz()">Grand Mock Test (200 Random Questions)</button>
+
+  <div id="customQuizSetup" style="display:none; margin-top: 20px;">
+    <h3>Select Subject & Topic</h3>
+    <select id="subjectFilter" onchange="updateTopicOptions()">
+      <option value="">-- Select Subject --</option>
+    </select>
+    <select id="topicFilter">
+      <option value="">-- Select Topic --</option>
+    </select>
+    <button onclick="startFilteredQuiz()">Start Customized Quiz</button>
+  </div>
+
+  <hr>
+  <div id="quizSection" style="display:none;">
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <div class="explanation" id="explanation"></div>
+    <div id="score">Score: 0</div>
+    <button id="nextBtn" onclick="loadNextQuestion()">Next</button>
+  </div>
+
+  <div id="result" style="display:none; font-size: 18px; margin-top: 20px;"></div>
+</body>
+</html>
